@@ -41,7 +41,7 @@ const RevenueChart = ({ total }) => (
     </div>
 )
 
-const VehicleTypes = ({ vehicles }) => {
+const VehicleTypes = ({ vehicles, capacity }) => {
     const counts = useMemo(() => {
         return vehicles.reduce((acc, v) => {
             acc[v.type] = (acc[v.type] || 0) + 1;
@@ -70,7 +70,7 @@ const VehicleTypes = ({ vehicles }) => {
                             style={{ height: `${(counts['2W'] / maxVal) * 100}%`, minHeight: '4px' }}
                             className={cn(
                                 "w-full rounded-t-lg transition-all duration-500",
-                                counts['2W'] > 0 ? "bg-slate-800 dark:bg-slate-600" : "bg-transparent"
+                                counts['2W'] > 0 ? "bg-slate-800 dark:bg-white" : "bg-transparent"
                             )}
                         ></div>
                     </div>
@@ -84,7 +84,7 @@ const VehicleTypes = ({ vehicles }) => {
                             style={{ height: `${(counts['4W'] / maxVal) * 100}%`, minHeight: '4px' }}
                             className={cn(
                                 "w-full rounded-t-lg transition-all duration-500",
-                                counts['4W'] > 0 ? "bg-slate-600 dark:bg-slate-400" : "bg-transparent"
+                                counts['4W'] > 0 ? "bg-slate-600 dark:bg-slate-300" : "bg-transparent"
                             )}
                         ></div>
                     </div>
@@ -93,7 +93,7 @@ const VehicleTypes = ({ vehicles }) => {
             </div>
             <div className="flex justify-between text-xs font-medium text-slate-500 dark:text-slate-400 px-2 transition-colors">
                 <div>Total: {vehicles.length}</div>
-                <div>Capacity: 50</div>
+                <div>Capacity: {capacity}</div>
             </div>
         </div>
     )
@@ -141,7 +141,7 @@ const OccupancyRing = ({ current, total = 50 }) => {
                     strokeDasharray={circumference}
                     strokeDashoffset={offset}
                     strokeLinecap="round"
-                    className="stroke-slate-900 dark:stroke-slate-50 transition-all duration-1000 ease-out"
+                    className="stroke-slate-900 dark:stroke-white transition-all duration-1000 ease-out"
                 />
             </svg>
             <div className="absolute inset-0 flex items-center justify-center text-xs font-bold text-slate-700 dark:text-slate-300 transition-colors">
@@ -152,7 +152,10 @@ const OccupancyRing = ({ current, total = 50 }) => {
 }
 
 export const ActivityGrid = () => {
-    const { stats, vehicles, history } = useParking();
+    const { stats, vehicles, history, rates } = useParking();
+
+    // Calculate dynamic capacity
+    const totalCapacity = (rates?.['2W']?.capacity || 50) + (rates?.['4W']?.capacity || 50);
 
     return (
         <div className="p-1 grid grid-cols-2 gap-4 auto-rows-min">
@@ -167,9 +170,9 @@ export const ActivityGrid = () => {
                 <BentoCard className="flex flex-row items-center justify-between !p-5">
                     <div>
                         <div className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest transition-colors">Occupancy</div>
-                        <div className="text-xl font-bold text-slate-900 dark:text-slate-200 mt-1 transition-colors">{stats.activeCount}/50</div>
+                        <div className="text-xl font-bold text-slate-900 dark:text-slate-200 mt-1 transition-colors">{stats.activeCount}/{totalCapacity}</div>
                     </div>
-                    <OccupancyRing current={stats.activeCount} />
+                    <OccupancyRing current={stats.activeCount} total={totalCapacity} />
                 </BentoCard>
 
                 <BentoCard className="flex flex-row items-center justify-between !p-5">
@@ -185,7 +188,7 @@ export const ActivityGrid = () => {
 
             {/* Vehicle Types - Full Width */}
             <BentoCard className="col-span-2" title="Vehicle Distribution" icon={Warehouse}>
-                <VehicleTypes vehicles={[...vehicles, ...history]} />
+                <VehicleTypes vehicles={[...vehicles, ...history]} capacity={totalCapacity} />
             </BentoCard>
 
             {/* Overstays - Full Width */}

@@ -12,7 +12,7 @@ const NavItem = ({ icon: Icon, label, isActive, onClick }) => (
         onClick={onClick}
         className={cn(
             "relative flex flex-col items-center justify-center w-full h-full transition-all duration-200 active:scale-90",
-            isActive ? "text-slate-900 dark:text-white scale-110" : "text-slate-400 dark:text-slate-600"
+            isActive ? "text-slate-900 dark:text-white scale-110" : "text-slate-400 dark:text-slate-500"
         )}
     >
         <Icon className={cn("h-6 w-6 stroke-[2.5px]", isActive && "fill-slate-900/5 dark:fill-white/5")} />
@@ -54,7 +54,7 @@ export const MobileLayout = ({ children, activeTab, onTabChange, onLogout }) => 
             {/* Main Content Area */}
             <main className="flex-1 overflow-y-auto overflow-x-hidden p-4 relative z-10 bg-stone-50 dark:bg-slate-950 scrollbar-hide transition-colors duration-300">
                 {children}
-                <div className="h-32 w-full" /> {/* Spacer for Bottom Nav */}
+                <div className="h-48 w-full" /> {/* Spacer for Bottom Nav */}
             </main>
 
             {/* Mobile Bottom Nav */}
@@ -77,7 +77,7 @@ export const MobileLayout = ({ children, activeTab, onTabChange, onLogout }) => 
                         <button
                             onClick={() => onTabChange('add')}
                             className={cn(
-                                "h-16 w-16 rounded-full bg-slate-900 flex items-center justify-center text-white shadow-xl shadow-slate-900/30 dark:shadow-black/50",
+                                "h-16 w-16 rounded-full bg-slate-900 dark:bg-white flex items-center justify-center text-white dark:text-slate-900 shadow-xl shadow-slate-900/30 dark:shadow-white/20",
                                 "transition-all duration-200 active:scale-90 border-[6px] border-stone-50 dark:border-slate-950"
                             )}
                         >

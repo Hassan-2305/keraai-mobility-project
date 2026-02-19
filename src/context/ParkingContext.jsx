@@ -12,8 +12,8 @@ export const useParking = () => {
 
 export const ParkingProvider = ({ children }) => {
     const [rates, setRates] = useState({
-        '2W': { hourly: 10 },
-        '4W': { hourly: 20 },
+        '2W': { hourly: 10, capacity: 50, base: 0 },
+        '4W': { hourly: 20, capacity: 50, base: 0 },
     });
 
     const [history, setHistory] = useState([

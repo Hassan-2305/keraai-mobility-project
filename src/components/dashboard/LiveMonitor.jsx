@@ -107,9 +107,9 @@ export const LiveMonitor = () => {
             {/* Active Vehicle List (Cards Only) */}
             <div className="space-y-3 pb-24">
                 {activeVehicles.length === 0 ? (
-                    <div className="py-12 flex flex-col items-center justify-center text-slate-400">
-                        <div className="h-16 w-16 bg-slate-100 rounded-full flex items-center justify-center mb-4">
-                            <Car className="h-8 w-8 text-slate-300" />
+                    <div className="py-12 flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 transition-colors">
+                        <div className="h-16 w-16 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center mb-4 transition-colors">
+                            <Car className="h-8 w-8 text-slate-300 dark:text-slate-600 transition-colors" />
                         </div>
                         <p className="font-medium">No active vehicles</p>
                     </div>

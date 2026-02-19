@@ -22,15 +22,15 @@ const Modal = ({ isOpen, onClose, title, children, className }) => {
                             exit={{ scale: 0.96, opacity: 0, y: 20 }}
                             transition={{ type: "spring", stiffness: 350, damping: 25 }}
                             className={cn(
-                                "w-full max-w-md overflow-hidden rounded-3xl border border-white/50 bg-white shadow-2xl shadow-slate-900/20",
+                                "w-full max-w-md overflow-hidden rounded-3xl border border-white/50 dark:border-slate-800 bg-white dark:bg-slate-950 shadow-2xl shadow-slate-900/20 dark:shadow-black/50 transition-colors",
                                 className
                             )}
                         >
-                            <div className="flex items-center justify-between border-b border-slate-100 px-6 py-4 bg-slate-50/50">
-                                <h2 className="text-lg font-bold text-slate-900 tracking-tight">{title}</h2>
+                            <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 px-6 py-4 bg-slate-50/50 dark:bg-slate-900/50 transition-colors">
+                                <h2 className="text-lg font-bold text-slate-900 dark:text-white tracking-tight transition-colors">{title}</h2>
                                 <button
                                     onClick={onClose}
-                                    className="rounded-full p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-600 transition-colors"
+                                    className="rounded-full p-2 text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"
                                 >
                                     <X className="h-5 w-5" />
                                 </button>

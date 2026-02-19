@@ -9,26 +9,26 @@ export const HistoryPanel = () => {
     return (
         <div className="flex flex-col h-full">
             <div className="px-1 mb-6">
-                <h2 className="text-lg font-bold text-slate-900 tracking-tight">Transaction History</h2>
-                <p className="text-slate-500 text-xs font-medium">Recorded sessions.</p>
+                <h2 className="text-lg font-bold text-slate-900 dark:text-white tracking-tight transition-colors">Transaction History</h2>
+                <p className="text-slate-500 dark:text-slate-400 text-xs font-medium transition-colors">Recorded sessions.</p>
             </div>
 
             <div className="space-y-4 pb-20">
                 {history.length === 0 ? (
                     <div className="flex flex-col items-center justify-center py-12 text-center opacity-70">
-                        <div className="bg-stone-100 p-4 rounded-full mb-3">
-                            <History className="h-8 w-8 text-stone-400" />
+                        <div className="bg-stone-100 dark:bg-slate-800 p-4 rounded-full mb-3 transition-colors">
+                            <History className="h-8 w-8 text-stone-400 dark:text-slate-500 transition-colors" />
                         </div>
-                        <h3 className="text-slate-900 font-bold">No History</h3>
-                        <p className="text-xs text-slate-500 max-w-[150px]">Completed sessions will appear here.</p>
+                        <h3 className="text-slate-900 dark:text-white font-bold transition-colors">No History</h3>
+                        <p className="text-xs text-slate-500 dark:text-slate-400 max-w-[150px] transition-colors">Completed sessions will appear here.</p>
                     </div>
                 ) : (
                     history.map((record) => (
-                        <div key={record.id} className="bg-white p-4 rounded-2xl border border-stone-100 shadow-sm flex items-center justify-between">
+                        <div key={record.id} className="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-stone-100 dark:border-slate-800 shadow-sm flex items-center justify-between transition-colors">
                             <div className="flex items-center gap-4">
                                 <div className={cn(
-                                    "h-10 w-10 rounded-xl flex items-center justify-center border border-stone-100 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-[0_2px_6px_rgba(0,0,0,0.03)] dark:shadow-none transition-colors",
-                                    record.type === '4W' ? "text-brand-blue" : "text-purple-500"
+                                    "h-10 w-10 rounded-xl flex items-center justify-center border border-stone-100 dark:border-slate-700 bg-stone-50 dark:bg-slate-800 shadow-[0_2px_6px_rgba(0,0,0,0.03)] dark:shadow-none transition-colors",
+                                    record.type === '4W' ? "text-brand-blue dark:text-sky-400" : "text-purple-500 dark:text-purple-400"
                                 )}>
                                     {record.type === '4W' ? <Car className="h-5 w-5" /> : <Bike className="h-5 w-5" />}
                                 </div>

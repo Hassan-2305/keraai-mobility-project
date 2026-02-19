@@ -26,36 +26,48 @@ export const SettingsModal = ({ isOpen, onClose }) => {
     return (
         <Modal isOpen={isOpen} onClose={onClose} title="Rate Configuration">
             <div className="space-y-6">
-                <p className="text-sm text-slate-500">Configure base and hourly parking charges.</p>
+                <p className="text-sm text-slate-500 dark:text-slate-400 transition-colors">Configure base and hourly parking charges.</p>
 
                 {/* 2W Settings */}
-                <div className="p-4 rounded-xl border border-stone-200 bg-stone-50">
-                    <div className="flex items-center gap-2 mb-4 text-slate-700 font-bold">
+                <div className="p-4 rounded-xl border border-stone-200 dark:border-slate-800 bg-stone-50 dark:bg-slate-900 transition-colors">
+                    <div className="flex items-center gap-2 mb-4 text-slate-700 dark:text-slate-200 font-bold transition-colors">
                         <Bike className="h-5 w-5" />
                         <span>Two Wheeler (2W)</span>
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                         <div>
-                            <label className="block text-xs font-bold text-slate-400 uppercase mb-1">Base Charge</label>
-                            <div className="flex items-center bg-white rounded-lg border border-stone-200 px-3 py-2 focus-within:border-brand-blue focus-within:ring-2 focus-within:ring-brand-blue/20 transition-all">
-                                <span className="text-slate-400 mr-2">₹</span>
+                            <label className="block text-xs font-bold text-slate-400 dark:text-slate-500 uppercase mb-1 transition-colors">Base Charge</label>
+                            <div className="flex items-center bg-white dark:bg-slate-950 rounded-lg border border-stone-200 dark:border-slate-800 px-3 py-2 focus-within:border-brand-blue focus-within:ring-2 focus-within:ring-brand-blue/20 transition-all">
+                                <span className="text-slate-400 dark:text-slate-500 mr-2">₹</span>
                                 <input
                                     type="number"
                                     value={localRates['2W'].base}
                                     onChange={(e) => handleChange('2W', 'base', e.target.value)}
-                                    className="w-full text-slate-900 font-bold outline-none bg-transparent"
+                                    className="w-full text-slate-900 dark:text-white font-bold outline-none bg-transparent transition-colors"
                                 />
                             </div>
                         </div>
                         <div>
-                            <label className="block text-xs font-bold text-slate-400 uppercase mb-1">Hourly Rate</label>
-                            <div className="flex items-center bg-white rounded-lg border border-stone-200 px-3 py-2 focus-within:border-brand-blue focus-within:ring-2 focus-within:ring-brand-blue/20 transition-all">
-                                <span className="text-slate-400 mr-2">₹</span>
+                            <label className="block text-xs font-bold text-slate-400 dark:text-slate-500 uppercase mb-1 transition-colors">Hourly Rate</label>
+                            <div className="flex items-center bg-white dark:bg-slate-950 rounded-lg border border-stone-200 dark:border-slate-800 px-3 py-2 focus-within:border-brand-blue focus-within:ring-2 focus-within:ring-brand-blue/20 transition-all">
+                                <span className="text-slate-400 dark:text-slate-500 mr-2">₹</span>
                                 <input
                                     type="number"
                                     value={localRates['2W'].hourly}
                                     onChange={(e) => handleChange('2W', 'hourly', e.target.value)}
-                                    className="w-full text-slate-900 font-bold outline-none bg-transparent"
+                                    className="w-full text-slate-900 dark:text-white font-bold outline-none bg-transparent transition-colors"
+                                />
+                            </div>
+                        </div>
+                        <div className="col-span-2">
+                            <label className="block text-xs font-bold text-slate-400 dark:text-slate-500 uppercase mb-1 transition-colors">Total Slots</label>
+                            <div className="flex items-center bg-white dark:bg-slate-950 rounded-lg border border-stone-200 dark:border-slate-800 px-3 py-2 focus-within:border-brand-blue focus-within:ring-2 focus-within:ring-brand-blue/20 transition-all">
+                                <span className="text-slate-400 dark:text-slate-500 mr-2 text-xs">#</span>
+                                <input
+                                    type="number"
+                                    value={localRates['2W'].capacity}
+                                    onChange={(e) => handleChange('2W', 'capacity', e.target.value)}
+                                    className="w-full text-slate-900 dark:text-white font-bold outline-none bg-transparent transition-colors"
                                 />
                             </div>
                         </div>
@@ -63,33 +75,45 @@ export const SettingsModal = ({ isOpen, onClose }) => {
                 </div>
 
                 {/* 4W Settings */}
-                <div className="p-4 rounded-xl border border-cyan-100 bg-cyan-50/30">
-                    <div className="flex items-center gap-2 mb-4 text-cyan-900 font-bold">
+                <div className="p-4 rounded-xl border border-cyan-100 dark:border-cyan-900/50 bg-cyan-50/30 dark:bg-cyan-950/20 transition-colors">
+                    <div className="flex items-center gap-2 mb-4 text-cyan-900 dark:text-cyan-400 font-bold transition-colors">
                         <Car className="h-5 w-5" />
                         <span>Four Wheeler (4W)</span>
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                         <div>
-                            <label className="block text-xs font-bold text-slate-400 uppercase mb-1">Base Charge</label>
-                            <div className="flex items-center bg-white rounded-lg border border-cyan-100 px-3 py-2 focus-within:border-brand-blue focus-within:ring-2 focus-within:ring-brand-blue/20 transition-all">
-                                <span className="text-slate-400 mr-2">₹</span>
+                            <label className="block text-xs font-bold text-slate-400 dark:text-slate-500 uppercase mb-1 transition-colors">Base Charge</label>
+                            <div className="flex items-center bg-white dark:bg-slate-950 rounded-lg border border-cyan-100 dark:border-cyan-900/30 px-3 py-2 focus-within:border-brand-blue focus-within:ring-2 focus-within:ring-brand-blue/20 transition-all">
+                                <span className="text-slate-400 dark:text-slate-500 mr-2">₹</span>
                                 <input
                                     type="number"
                                     value={localRates['4W'].base}
                                     onChange={(e) => handleChange('4W', 'base', e.target.value)}
-                                    className="w-full text-slate-900 font-bold outline-none bg-transparent"
+                                    className="w-full text-slate-900 dark:text-white font-bold outline-none bg-transparent transition-colors"
                                 />
                             </div>
                         </div>
                         <div>
-                            <label className="block text-xs font-bold text-slate-400 uppercase mb-1">Hourly Rate</label>
-                            <div className="flex items-center bg-white rounded-lg border border-cyan-100 px-3 py-2 focus-within:border-brand-blue focus-within:ring-2 focus-within:ring-brand-blue/20 transition-all">
-                                <span className="text-slate-400 mr-2">₹</span>
+                            <label className="block text-xs font-bold text-slate-400 dark:text-slate-500 uppercase mb-1 transition-colors">Hourly Rate</label>
+                            <div className="flex items-center bg-white dark:bg-slate-950 rounded-lg border border-cyan-100 dark:border-cyan-900/30 px-3 py-2 focus-within:border-brand-blue focus-within:ring-2 focus-within:ring-brand-blue/20 transition-all">
+                                <span className="text-slate-400 dark:text-slate-500 mr-2">₹</span>
                                 <input
                                     type="number"
                                     value={localRates['4W'].hourly}
                                     onChange={(e) => handleChange('4W', 'hourly', e.target.value)}
-                                    className="w-full text-slate-900 font-bold outline-none bg-transparent"
+                                    className="w-full text-slate-900 dark:text-white font-bold outline-none bg-transparent transition-colors"
+                                />
+                            </div>
+                        </div>
+                        <div className="col-span-2">
+                            <label className="block text-xs font-bold text-slate-400 dark:text-slate-500 uppercase mb-1 transition-colors">Total Slots</label>
+                            <div className="flex items-center bg-white dark:bg-slate-950 rounded-lg border border-cyan-100 dark:border-cyan-900/30 px-3 py-2 focus-within:border-brand-blue focus-within:ring-2 focus-within:ring-brand-blue/20 transition-all">
+                                <span className="text-slate-400 dark:text-slate-500 mr-2 text-xs">#</span>
+                                <input
+                                    type="number"
+                                    value={localRates['4W'].capacity}
+                                    onChange={(e) => handleChange('4W', 'capacity', e.target.value)}
+                                    className="w-full text-slate-900 dark:text-white font-bold outline-none bg-transparent transition-colors"
                                 />
                             </div>
                         </div>
@@ -118,6 +142,6 @@ export const SettingsModal = ({ isOpen, onClose }) => {
                     </Button>
                 </div>
             </div>
-        </Modal>
+        </Modal >
     )
 }
