@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  /* Bento Light Mode Base */
+  color-scheme: light;
+  color: #1C1917;
+  /* Stone 900 */
+  background-color: #FAFAF9;
+  /* Stone 50 */
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  /* Lock body scroll */
+  @apply bg-slate-50 text-slate-900 transition-colors duration-300;
+  @apply dark:bg-slate-950 dark:text-slate-50;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hide Scrollbar Utility */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D6D3D1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #A8A29E;
+}
+
+::selection {
+  background-color: rgba(6, 182, 212, 0.3);
+  /* Cyan soft */
+  color: #06b6d4;
+}
+
+/* Utility Classes for Glassmorphism/Micro-interactions */
+/* Utility Classes for Glassmorphism/Micro-interactions */
+.glass-panel {
+  @apply bg-white/70 backdrop-blur-xl border border-white/30 shadow-sm transition-all;
+  @apply dark:bg-slate-900/70 dark:border-slate-800/50 dark:shadow-none;
+}
+
+@layer utilities {
+  .bg-glass {
+    @apply bg-white/70 backdrop-blur-xl;
+    @apply dark:bg-slate-900/70;
+  }
+
+  .border-glassBorder {
+    @apply border-slate-200/50;
+    @apply dark:border-slate-800/50;
+  }
+}
+
+.hover-trigger {
+  transition: all 0.2s ease-in-out;
+}
+
+.hover-trigger:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Prevent iOS zoom on inputs */
+@media screen and (max-width: 640px) {
+
+  input,
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+}
