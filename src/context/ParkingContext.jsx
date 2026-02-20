@@ -12,8 +12,8 @@ export const useParking = () => {
 
 export const ParkingProvider = ({ children }) => {
     const [rates, setRates] = useState({
-        '2W': { hourly: 10, capacity: 50, base: 0 },
-        '4W': { hourly: 20, capacity: 50, base: 0 },
+        '2W': { hourly: 10, capacity: 50, base: 0, overstay: 15 },
+        '4W': { hourly: 20, capacity: 50, base: 0, overstay: 30 },
     });
 
     const [history, setHistory] = useState([
@@ -105,7 +105,6 @@ export const ParkingProvider = ({ children }) => {
     };
 
     const checkoutVehicle = (vehicleId) => {
-        // Calculate fees
         const vehicle = vehicles.find(v => v.id === vehicleId);
         if (!vehicle) return null;
 
@@ -115,21 +114,27 @@ export const ParkingProvider = ({ children }) => {
         const actualDuration = Math.ceil(durationHours); // Round up to next hour
 
         const rateConfig = rates[vehicle.type];
-        const totalCost = actualDuration * rateConfig.hourly;
-        const paidUpfront = vehicle.initialFee || 0;
-
-        // Calculate balance directly
-        const balanceDue = Math.max(0, totalCost - paidUpfront);
         const overstayHours = Math.max(0, actualDuration - vehicle.declaredDuration);
+        const regularHours = Math.min(actualDuration, vehicle.declaredDuration);
+
+        // Regular cost uses hourly rate, overstay cost uses the separate overstay rate
+        const regularCost = regularHours * rateConfig.hourly;
+        const overstayCost = overstayHours * (rateConfig.overstay || rateConfig.hourly);
+        const totalCost = regularCost + overstayCost;
+
+        const paidUpfront = vehicle.initialFee || 0;
+        const balanceDue = Math.max(0, totalCost - paidUpfront);
 
         return {
             ...vehicle,
             actualDuration,
             overstayHours,
+            regularCost,
+            overstayCost,
             totalCost,
             balanceDue,
             exitTime: now.toISOString(),
-            totalDue: balanceDue // Only balance is due at exit
+            totalDue: balanceDue
         };
     };
 

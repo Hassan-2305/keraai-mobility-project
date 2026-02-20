@@ -83,7 +83,22 @@ export const ExitModal = ({ isOpen, onClose, onConfirm, vehicle, exitData }) => 
                 </div>
 
                 {/* Final Calculation */}
-                <div className="pt-6 border-t border-slate-100 dark:border-slate-800 space-y-4 transition-colors">
+                <div className="pt-6 border-t border-slate-100 dark:border-slate-800 space-y-3 transition-colors">
+                    <div className="flex justify-between text-sm">
+                        <span className="text-slate-500 dark:text-slate-400 transition-colors">Regular Parking</span>
+                        <span className="font-mono font-bold text-slate-700 dark:text-slate-300 transition-colors">₹{exitData.regularCost ?? exitData.totalCost}</span>
+                    </div>
+
+                    {exitData.overstayHours > 0 && (
+                        <div className="flex justify-between text-sm">
+                            <span className="text-rose-600 dark:text-rose-400 font-bold flex items-center gap-1 transition-colors">
+                                <AlertTriangle className="h-3.5 w-3.5" />
+                                Overstay Charge ({exitData.overstayHours}h)
+                            </span>
+                            <span className="font-mono font-bold text-rose-600 dark:text-rose-400 transition-colors">₹{exitData.overstayCost ?? 0}</span>
+                        </div>
+                    )}
+
                     <div className="flex justify-between text-sm">
                         <span className="text-slate-500 dark:text-slate-400 transition-colors">Paid Upfront</span>
                         <span className="font-mono font-bold text-emerald-600 dark:text-emerald-500 transition-colors">- ₹{vehicle.initialFee}</span>
@@ -92,12 +107,6 @@ export const ExitModal = ({ isOpen, onClose, onConfirm, vehicle, exitData }) => 
                     <div className="flex justify-between items-end">
                         <div>
                             <p className="text-lg font-bold text-slate-900 dark:text-white mb-0 transition-colors">Balance Due</p>
-                            {exitData.overstayHours > 0 && (
-                                <p className="text-xs text-rose-600 dark:text-rose-500 font-bold flex items-center gap-1 transition-colors">
-                                    <AlertTriangle className="h-3 w-3" />
-                                    {exitData.overstayHours}h Overstay
-                                </p>
-                            )}
                         </div>
                         <div className="flex items-center gap-3">
                             <button onClick={handlePrint} className="p-2 rounded-full bg-stone-100 dark:bg-slate-800 hover:bg-stone-200 dark:hover:bg-slate-700 text-slate-500 dark:text-slate-400 transition-colors" title="Print Receipt">

@@ -60,6 +60,19 @@ export const SettingsModal = ({ isOpen, onClose }) => {
                             </div>
                         </div>
                         <div className="col-span-2">
+                            <label className="block text-xs font-bold text-slate-400 dark:text-slate-500 uppercase mb-1 transition-colors">Overstay Rate / hr</label>
+                            <div className="flex items-center bg-white dark:bg-slate-950 rounded-lg border border-rose-100 dark:border-rose-900/40 px-3 py-2 focus-within:border-rose-400 focus-within:ring-2 focus-within:ring-rose-400/20 transition-all">
+                                <span className="text-rose-400 dark:text-rose-500 mr-2">₹</span>
+                                <input
+                                    type="number"
+                                    value={localRates['2W'].overstay ?? ''}
+                                    onChange={(e) => handleChange('2W', 'overstay', e.target.value)}
+                                    className="w-full text-slate-900 dark:text-white font-bold outline-none bg-transparent transition-colors"
+                                    placeholder="0"
+                                />
+                            </div>
+                        </div>
+                        <div className="col-span-2">
                             <label className="block text-xs font-bold text-slate-400 dark:text-slate-500 uppercase mb-1 transition-colors">Total Slots</label>
                             <div className="flex items-center bg-white dark:bg-slate-950 rounded-lg border border-stone-200 dark:border-slate-800 px-3 py-2 focus-within:border-brand-blue focus-within:ring-2 focus-within:ring-brand-blue/20 transition-all">
                                 <span className="text-slate-400 dark:text-slate-500 mr-2 text-xs">#</span>
@@ -102,6 +115,19 @@ export const SettingsModal = ({ isOpen, onClose }) => {
                                     value={localRates['4W'].hourly}
                                     onChange={(e) => handleChange('4W', 'hourly', e.target.value)}
                                     className="w-full text-slate-900 dark:text-white font-bold outline-none bg-transparent transition-colors"
+                                />
+                            </div>
+                        </div>
+                        <div className="col-span-2">
+                            <label className="block text-xs font-bold text-slate-400 dark:text-slate-500 uppercase mb-1 transition-colors">Overstay Rate / hr</label>
+                            <div className="flex items-center bg-white dark:bg-slate-950 rounded-lg border border-rose-100 dark:border-rose-900/40 px-3 py-2 focus-within:border-rose-400 focus-within:ring-2 focus-within:ring-rose-400/20 transition-all">
+                                <span className="text-rose-400 dark:text-rose-500 mr-2">₹</span>
+                                <input
+                                    type="number"
+                                    value={localRates['4W'].overstay ?? ''}
+                                    onChange={(e) => handleChange('4W', 'overstay', e.target.value)}
+                                    className="w-full text-slate-900 dark:text-white font-bold outline-none bg-transparent transition-colors"
+                                    placeholder="0"
                                 />
                             </div>
                         </div>
